@@ -1,493 +1,569 @@
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Hospital Veterinário ACVET</title>
+<title>Punho Fort Facilities Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-html { scroll-behavior: smooth; }
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    padding-top: 180px;
-    padding-bottom: 120px;
+    background-color: #f4f6f8;
+    color: #333;
+    padding-top: 120px; /* top-bar + nav-bar */
 }
 
-/* ================= TOPO ================= */
-.topbar {
+/* HEADER FIXO - TOPO */
+.top-bar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    height: 90px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,.15);
-    z-index: 1000;
-}
-
-.center {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 20px;
     display: flex;
     align-items: center;
+    z-index: 1001;
 }
 
-.center img {
-    height: 45px;
-    margin-right: 10px;
+.top-bar .logo {
+    display: flex;
+    align-items: center;
 }
 
-.hospital { color: #6b8e23; font-size: 14px; font-weight: bold; }
-.veterinario { color: #4a4a4a; font-size: 14px; font-weight: bold; }
+.top-bar img {
+    height: 60px;
+}
 
-/* ================= MENU ================= */
-.iconbar {
+.top-bar h1 {
+    margin-left: 12px;
+    font-size: 20px;
+    color: #1f2933;
+}
+
+/* NAV BAR FIXO ABAIXO */
+.nav-bar {
     position: fixed;
-    top: 90px;
+    top: 76px; /* altura da top-bar */
+    left: 0;
     width: 100%;
-    height: 90px;
-    background: #f8f8f8;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    z-index: 999;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 20px;
+    z-index: 1000;
+    overflow-x: auto;
 }
 
-.icon-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #000;
-    font-size: 11px;
+.nav-bar nav {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.nav-bar nav a {
+    text-decoration: none;
+    color: #1f2933;
+    font-size: 13px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.icon-btn span {
-    font-size: 22px;
-    margin-bottom: 4px;
-}
-
-.icon-btn.active {
-    color: #6b8e23;
-}
-
-/* ================= SEÇÕES ================= */
-.section {
-    padding: 20px;
-}
-
-.section-title {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 22px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* ================= CARD ================= */
-.card {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    border-radius: 20px 20px 0 0;
+    justify-content: center;
+    gap: 4px;
+    min-width: 60px;
+    max-width: 90px;
+    text-align: center;
+    white-space: nowrap;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    text-overflow: ellipsis;
+}
+
+.nav-bar nav span {
+    font-size: 20px;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+/* TÍTULOS E PARÁGRAFOS */
+h2 {
+    color: #1f2933;
+    margin: 25px 0 10px;
+    font-size: 24px;
+}
+
+p {
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* BOTÕES */
+.botoes {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.botao {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.botao-comercial {
+    background-color: #0f4c81;
+}
+
+.botao-comercial:hover {
+    background-color: #0c3c66;
+}
+
+.botao-rh {
+    background-color: #1f6f5c;
+}
+
+.botao-rh:hover {
+    background-color: #185a4b;
+}
+
+/* CARDS ÁREAS DE ATUAÇÃO */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    text-align: center;
 }
 
 .card img {
     width: 100%;
-    height: 220px;
+    height: 160px;
     object-fit: cover;
 }
 
 .card-content {
-    padding: 20px;
-    color: #555;
+    padding: 15px 10px 20px;
 }
 
-/* ================= GRID ================= */
-.grid {
-    max-width: 900px;
-    margin: auto;
+.card h3 {
+    margin: 10px 0;
+    color: #0f4c81;
+    font-size: 18px;
+}
+
+/* SERVIÇOS */
+.servicos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    margin-top: 25px;
 }
 
-/* ================= EXPAND CARD ================= */
-.expand-card {
-    background: #fff;
+.servico-card {
+    background: #e9edf1;
     border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
-    overflow: hidden;
-}
-
-.expand-header {
-    padding: 18px;
-    cursor: pointer;
-    position: relative;
-}
-
-.expand-header h4 {
-    margin: 0;
-    text-align: center;
-    font-size: 15px;
-}
-
-.chevron {
-    position: absolute;
-    right: 16px;
-    top: 20px;
-    color: #6b8e23;
-    transition: transform .3s;
-}
-
-.expand-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 18px;
-    font-size: 14px;
-    color: #555;
-    transition: max-height .4s ease;
-}
-
-.expand-card.active .expand-content {
-    max-height: 200px;
-    padding-bottom: 18px;
-}
-
-.expand-card.active .chevron {
-    transform: rotate(180deg);
-}
-
-/* ================= WHATSAPP ================= */
-.whatsapp-card {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 14px 18px;
-    border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.25);
-}
-
-.whatsapp-btn {
-    background: #25D366;
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* ================= RODAPÉ ================= */
-footer {
-    background: #2f2f2f;
-    color: #ddd;
     padding: 20px;
-    margin-top: 40px;
+    text-align: center;
 }
 
-.footer-container {
-    max-width: 1000px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 16px;
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #0f4c81;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 12px;
 }
 
-footer h4 {
-    color: #6b8e23;
-    margin-bottom: 6px;
+.servico-card h3 {
+    margin-bottom: 8px;
+    color: #0f4c81;
+    font-size: 16px;
+}
+
+/* CARROSSEL CLIENTES */
+.cliente-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+    width: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.carousel-dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.carousel-dots .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-dots .dot.active {
+    background-color: #0f4c81;
+}
+
+/* LOGIN MODAL */
+.login-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #0f4c81;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #0f4c81;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: #0c3c66;
+}
+
+.login-box a {
+    display: block;
+    margin-top: 15px;
+    color: #555;
+    text-decoration: none;
     font-size: 14px;
 }
 
-footer p {
-    margin: 2px 0;
-    font-size: 13px;
+/* FOOTER */
+footer {
+    background-color: #1f2933;
+    color: #ffffff;
+    text-align: center;
+    padding: 22px 10px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* SCROLL PARA ANCORAS COM DUAS BARRAS FIXAS */
+:target {
+    scroll-margin-top: 130px; /* top-bar + nav-bar */
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .top-bar h1 {
+        font-size: 18px;
+    }
+
+    .nav-bar nav a {
+        min-width: 55px;
+        max-width: 80px;
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .cards {
+        gap: 15px;
+    }
+
+    .servicos {
+        gap: 15px;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .carousel-slide img {
+        max-width: 90%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOPO -->
-<div class="topbar">
-    <div class="center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl0o7CM7UKWNZqQQ7aLID3IPsHk_HvFI5N4wvnxv8VfQ&s">
-        <div>
-            <div class="hospital">Hospital</div>
-            <div class="veterinario">Veterinário</div>
+<header>
+    <!-- BARRA SUPERIOR: Logo e Nome -->
+    <div class="top-bar">
+        <div class="logo">
+            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQEmT-m-5CKL9w/company-logo_200_200/company-logo_200_200/0/1630498690652?e=2147483647&v=beta&t=jqtSO1BnHPlYqx6y9RWFzABdLUBLTRFCjRcwSpH4ocQ" alt="Logo Punho Fort">
+            <h1>Punho Fort Facilities Service</h1>
         </div>
     </div>
+
+    <!-- BARRA INFERIOR: Menu -->
+    <div class="nav-bar">
+        <nav>
+            <a href="#servicos"><span>🧰</span>Serviços</a>
+            <a href="#clientes"><span>🤝</span>Clientes</a>
+            <a href="#"><span>❓</span>Dúvidas</a>
+            <a href="#"><span>👷</span>Trabalhe Conosco</a>
+            <a href="javascript:void(0)" onclick="abrirLogin()"><span>🏠</span>Login</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+<h2>Quem Somos</h2>
+
+<p>
+A <strong>Punho Fort</strong> foi criada com o objetivo da prestação de serviços de
+<strong>Limpeza, Conservação, Higienização e Desinfecção Ambiental</strong>,
+<strong>Manutenção Predial e Industrial</strong>, <strong>Manutenção e Reforma de Telhados</strong>,
+<strong>Alpinismo Industrial e Predial</strong> e <strong>Carga e Descarga</strong>.
+</p>
+
+<p>
+Nosso trabalho consiste em identificar, desenvolver e gerenciar uma solução adequada
+e integrada ao perfil da sua empresa e dos seus colaboradores.
+</p>
+
+<p>
+Contamos com mais de <strong>20 anos de experiência</strong>, atendendo clientes
+exigentes com foco no trinômio:
+<strong>Eficiência • Segurança • Economia</strong>.
+</p>
+
+<div class="botoes">
+    <a class="botao botao-comercial"
+       href="https://wa.me/5581998260232"
+       target="_blank">
+        💼 Falar com o Comercial
+    </a>
+  
+    <a class="botao botao-rh"
+       href="https://wa.me/5581981807474"
+       target="_blank">
+        👷 Trabalhe Conosco (RH)
+    </a>
 </div>
 
-<!-- MENU -->
-<div class="iconbar">
-    <button class="icon-btn" onclick="goTo(this,'quem')"><span>🏥</span>Quem Somos</button>
-    <button class="icon-btn" onclick="goTo(this,'servicos')"><span>🩺</span>Serviços</button>
-    <button class="icon-btn" onclick="goTo(this,'especialidades')"><span>⭐</span>Especialidades</button>
-    <button class="icon-btn" onclick="goTo(this,'depoimentos')"><span>💬</span>Depoimentos</button>
-    <button class="icon-btn" onclick="goTo(this,'equipe')"><span>👩‍⚕️</span>Equipe</button>
-    <button class="icon-btn" onclick="goTo(this,'contato')"><span>📞</span>Contato</button>
-</div>
+<h2>Áreas de Atuação</h2>
 
-<!-- QUEM SOMOS -->
-<section id="quem" class="section">
-    <h2 class="section-title">Quem Somos</h2>
+<div class="cards">
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
         <div class="card-content">
-            Fundada pelos médicos-veterinários Dr. Cristiano Lira e Dr. Thomás Souza, a ACVET+ tem como missão oferecer cuidados veterinários de excelência, com foco no bem-estar dos animais e no atendimento humanizado.
-
-Trabalhamos com qualidade, inovação e compromisso, guiados por valores como empatia, profissionalismo e trabalho em equipe. Nosso time está preparado para cuidar do seu pet com carinho, responsabilidade e dedicação, todos os dias da semana.
+            <h3>Corporativo</h3>
+            <p>Soluções completas para empresas, escritórios e indústrias.</p>
         </div>
     </div>
-</section>
 
-<!-- SERVIÇOS -->
-<section id="servicos" class="section">
-    <h2 class="section-title">Serviços</h2>
-
-    <div class="grid">
-
-        <!-- CONSULTAS CLÍNICAS -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Consultas Clínicas</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Consultas completas para cães e gatos, com avaliação cuidadosa,
-                escuta atenta aos tutores e foco no diagnóstico preciso e no
-                bem-estar do seu pet.
-            </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350">
+        <div class="card-content">
+            <h3>Educação</h3>
+            <p>Ambientes limpos, seguros e adequados ao aprendizado.</p>
         </div>
-
-        <!-- ATENDIMENTO DE EMERGÊNCIA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Atendimento de Emergência</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Atendimento rápido e eficiente para situações urgentes, com equipe
-                preparada para oferecer suporte imediato e salvar vidas quando
-                cada minuto conta.
-            </div>
-        </div>
-
-        <!-- INTERNAÇÃO -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Internação</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Ambiente seguro e monitorado, garantindo conforto, cuidados contínuos
-                e acompanhamento veterinário durante o período de recuperação.
-            </div>
-        </div>
-
-        <!-- EXAMES LABORATORIAIS -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Exames Laboratoriais</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Exames realizados com precisão e rapidez, auxiliando no diagnóstico
-                e no acompanhamento da saúde do seu animal.
-            </div>
-        </div>
-
-        <!-- VACINAÇÃO -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Vacinação</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Protocolos de vacinação atualizados, aplicados com cuidado e atenção,
-                contribuindo para a proteção e qualidade de vida do seu pet.
-            </div>
-        </div>
-
     </div>
-</section>
 
-<!-- ESPECIALIDADES -->
-<section id="especialidades" class="section">
-    <h2 class="section-title">Especialidades</h2>
-
-    <div class="grid">
-
-        <!-- CIRURGIA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Cirurgia</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Realizamos procedimentos cirúrgicos com total segurança, utilizando
-                técnicas modernas e monitoramento constante, sempre priorizando o
-                conforto, a recuperação e o bem-estar do seu pet.
-            </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3">
+        <div class="card-content">
+            <h3>Saúde</h3>
+            <p>Rigorosos padrões de higienização e controle ambiental.</p>
         </div>
-
-        <!-- CLÍNICA GERAL -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Clínica Geral</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Atendimento completo para avaliação, diagnóstico e acompanhamento da
-                saúde do seu animal, com escuta atenta e cuidado individualizado em
-                todas as fases da vida.
-            </div>
-        </div>
-
-        <!-- DIAGNÓSTICO POR IMAGEM -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Diagnóstico por Imagem</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Exames de imagem que auxiliam no diagnóstico preciso, realizados de
-                forma cuidadosa para reduzir o estresse do animal e garantir resultados
-                confiáveis.
-            </div>
-        </div>
-
-        <!-- ANESTESIOLOGIA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Anestesiologia</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Protocolos anestésicos personalizados, com acompanhamento contínuo,
-                assegurando tranquilidade, segurança e conforto durante todo o
-                procedimento.
-            </div>
-        </div>
-
-        <!-- MEDICINA PREVENTIVA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Medicina Preventiva</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Ações preventivas como vacinação, check-ups e orientações, focadas em
-                manter seu pet saudável e evitar problemas futuros.
-            </div>
-        </div>
-
     </div>
-</section>
 
-<!-- DEPOIMENTOS -->
-<section id="depoimentos" class="section">
-    <h2 class="section-title">Depoimentos</h2>
-    <div class="grid">
-        <div class="expand-card"><div class="expand-header"><h4>“Atendimento excelente!”</h4></div></div>
-    </div>
-</section>
-
-<!-- EQUIPE -->
-<section id="equipe" class="section">
-    <h2 class="section-title">Equipe</h2>
-
-    <div class="grid">
-
-        <!-- DR. CRISTIANO LIRA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Dr. Cristiano Lira</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Médico-veterinário fundador da ACVET+, atua com foco em cirurgias e
-                cuidados clínicos, prezando pelo atendimento humanizado e seguro.
-            </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+        <div class="card-content">
+            <h3>Condomínio</h3>
+            <p>Conservação, manutenção e bem-estar.</p>
         </div>
-
-        <!-- DR. THOMÁS SOUZA -->
-        <div class="expand-card">
-            <div class="expand-header" onclick="toggleCard(this)">
-                <h4>Dr. Thomás Souza</h4>
-                <div class="chevron">⌄</div>
-            </div>
-            <div class="expand-content">
-                Médico-veterinário fundador da ACVET+, com atuação voltada à clínica geral
-                e ao bem-estar animal, unindo conhecimento técnico e empatia.
-            </div>
-        </div>
-
     </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato" class="section">
-    <h2 class="section-title">Contato</h2>
-    <div class="grid">
-        <div class="expand-card"><div class="expand-header"><h4>(81) 99392-0805</h4></div></div>
-    </div>
-</section>
-
-<!-- WHATSAPP -->
-<div class="whatsapp-card">
-    <a class="whatsapp-btn"
-       href="https://wa.me/5581993920805?text=Olá,%20gostaria%20de%20informações%20sobre%20os%20serviços%20do%20Hospital%20Veterinário."
-       target="_blank">WhatsApp</a>
 </div>
 
-<!-- RODAPÉ -->
-<footer>
-    <div class="footer-container">
-        <div>
-            <h4>Hospital Veterinário ACVET</h4>
-            <p>Cuidado e excelência em saúde animal.</p>
+<h2 id="servicos">Nossos Serviços</h2>
+
+<div class="servicos">
+    <div class="servico-card"><div class="icon">🧹</div><h3>Limpeza</h3><p>Descreva aqui</p></div>
+    <div class="servico-card"><div class="icon">🏢</div><h3>Manutenção Predial</h3><p>Descreva aqui</p></div>
+    <div class="servico-card"><div class="icon">🧗</div><h3>Alpinismo Industrial e Predial</h3><p>Descreva aqui</p></div>
+    <div class="servico-card"><div class="icon">🏭</div><h3>Manutenção Predial e Industrial</h3><p>Descreva aqui</p></div>
+    <div class="servico-card"><div class="icon">🛠️</div><h3>Manutenção e Reforma de Telhados</h3><p>Descreva aqui</p></div>
+    <div class="servico-card"><div class="icon">🚚</div><h3>Carga e Descarga</h3><p>Descreva aqui</p></div>
+</div>
+
+</div>
+
+<section id="clientes">
+<div class="container">
+
+<h2>Nossos Clientes</h2>
+
+<p style="text-align:center; max-width:900px; margin:20px auto 40px;">
+<strong>ORGULHOSAMENTE, RESERVAMOS ESTE ESPAÇO PARA SUA MARCA!</strong>
+</p>
+
+<div class="cliente-carousel">
+    <div class="carousel-wrapper">
+        <div class="carousel-slide">
+            <img src="https://th.bing.com/th/id/OIP.iqYYFlrsUXZwJq2BH3q3QQAAAA?w=199&h=180">
         </div>
-        <div>
-            <h4>Contato</h4>
-            <p>(81) 99392-0805</p>
+        <div class="carousel-slide">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.snl3ASJA8rdvysNUFn5aggAAAA?w=206&h=206">
         </div>
-        <div>
-            <h4>Endereço</h4>
-            <p>São Lourenço da Mata – PE</p>
+        <div class="carousel-slide">
+            <img src="https://th.bing.com/th/id/OIP.pQJb6PC0u_flG12seBOFNQHaFj?w=198&h=180">
+        </div>
+        <div class="carousel-slide">
+            <img src="https://th.bing.com/th/id/OIP.TmLRNemTdNMy3g0mLUcUgwHaE8?w=251&h=180">
         </div>
     </div>
-</footer>
+    <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- TELA DE LOGIN -->
+<div id="loginModal" class="login-modal">
+    <div class="login-box">
+        <h2>Área Restrita</h2>
+        <input type="text" placeholder="Usuário">
+        <input type="password" placeholder="Senha">
+        <button>Entrar</button>
+        <a href="javascript:void(0)" onclick="fecharLogin()">Fechar</a>
+    </div>
+</div>
 
 <script>
-function goTo(btn, id) {
-    const section = document.getElementById(id);
-    const offset = 180;
+function abrirLogin() {
+    document.getElementById("loginModal").style.display = "flex";
+}
 
-    window.scrollTo({
-        top: section.offsetTop - offset,
-        behavior: 'smooth'
+function fecharLogin() {
+    document.getElementById("loginModal").style.display = "none";
+}
+
+/* CARROSSEL */
+let slideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    const offset = -index * 100;
+    document.querySelector('.carousel-wrapper').style.transform = `translateX(${offset}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+}
+
+dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+        slideIndex = idx;
+        showSlide(slideIndex);
     });
+});
 
-    document.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-}
-
-function toggleCard(el) {
-    el.parentElement.classList.toggle('active');
-}
+setInterval(nextSlide, 3000);
+showSlide(slideIndex);
 </script>
+
+<footer>
+© 2025 Punho Fort Facilities Services<br>
+Eficiência • Segurança • Economia<br>
+Rua Barão de Água Branca, 521 - Imbiribeira - Recife/PE - 51160-300<br>
+CNPJ: 18.253.970/0001-64
+</footer>
 
 </body>
 </html>
