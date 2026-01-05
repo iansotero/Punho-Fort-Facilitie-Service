@@ -1,0 +1,493 @@
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Hospital Veterinário ACVET</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    padding-top: 180px;
+    padding-bottom: 120px;
+}
+
+/* ================= TOPO ================= */
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    z-index: 1000;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.center img {
+    height: 45px;
+    margin-right: 10px;
+}
+
+.hospital { color: #6b8e23; font-size: 14px; font-weight: bold; }
+.veterinario { color: #4a4a4a; font-size: 14px; font-weight: bold; }
+
+/* ================= MENU ================= */
+.iconbar {
+    position: fixed;
+    top: 90px;
+    width: 100%;
+    height: 90px;
+    background: #f8f8f8;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    z-index: 999;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-btn span {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.icon-btn.active {
+    color: #6b8e23;
+}
+
+/* ================= SEÇÕES ================= */
+.section {
+    padding: 20px;
+}
+
+.section-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================= CARD ================= */
+.card {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+    color: #555;
+}
+
+/* ================= GRID ================= */
+.grid {
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 20px;
+}
+
+/* ================= EXPAND CARD ================= */
+.expand-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    overflow: hidden;
+}
+
+.expand-header {
+    padding: 18px;
+    cursor: pointer;
+    position: relative;
+}
+
+.expand-header h4 {
+    margin: 0;
+    text-align: center;
+    font-size: 15px;
+}
+
+.chevron {
+    position: absolute;
+    right: 16px;
+    top: 20px;
+    color: #6b8e23;
+    transition: transform .3s;
+}
+
+.expand-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 18px;
+    font-size: 14px;
+    color: #555;
+    transition: max-height .4s ease;
+}
+
+.expand-card.active .expand-content {
+    max-height: 200px;
+    padding-bottom: 18px;
+}
+
+.expand-card.active .chevron {
+    transform: rotate(180deg);
+}
+
+/* ================= WHATSAPP ================= */
+.whatsapp-card {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ================= RODAPÉ ================= */
+footer {
+    background: #2f2f2f;
+    color: #ddd;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 16px;
+}
+
+footer h4 {
+    color: #6b8e23;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 2px 0;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPO -->
+<div class="topbar">
+    <div class="center">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl0o7CM7UKWNZqQQ7aLID3IPsHk_HvFI5N4wvnxv8VfQ&s">
+        <div>
+            <div class="hospital">Hospital</div>
+            <div class="veterinario">Veterinário</div>
+        </div>
+    </div>
+</div>
+
+<!-- MENU -->
+<div class="iconbar">
+    <button class="icon-btn" onclick="goTo(this,'quem')"><span>🏥</span>Quem Somos</button>
+    <button class="icon-btn" onclick="goTo(this,'servicos')"><span>🩺</span>Serviços</button>
+    <button class="icon-btn" onclick="goTo(this,'especialidades')"><span>⭐</span>Especialidades</button>
+    <button class="icon-btn" onclick="goTo(this,'depoimentos')"><span>💬</span>Depoimentos</button>
+    <button class="icon-btn" onclick="goTo(this,'equipe')"><span>👩‍⚕️</span>Equipe</button>
+    <button class="icon-btn" onclick="goTo(this,'contato')"><span>📞</span>Contato</button>
+</div>
+
+<!-- QUEM SOMOS -->
+<section id="quem" class="section">
+    <h2 class="section-title">Quem Somos</h2>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee">
+        <div class="card-content">
+            Fundada pelos médicos-veterinários Dr. Cristiano Lira e Dr. Thomás Souza, a ACVET+ tem como missão oferecer cuidados veterinários de excelência, com foco no bem-estar dos animais e no atendimento humanizado.
+
+Trabalhamos com qualidade, inovação e compromisso, guiados por valores como empatia, profissionalismo e trabalho em equipe. Nosso time está preparado para cuidar do seu pet com carinho, responsabilidade e dedicação, todos os dias da semana.
+        </div>
+    </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="section">
+    <h2 class="section-title">Serviços</h2>
+
+    <div class="grid">
+
+        <!-- CONSULTAS CLÍNICAS -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Consultas Clínicas</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Consultas completas para cães e gatos, com avaliação cuidadosa,
+                escuta atenta aos tutores e foco no diagnóstico preciso e no
+                bem-estar do seu pet.
+            </div>
+        </div>
+
+        <!-- ATENDIMENTO DE EMERGÊNCIA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Atendimento de Emergência</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Atendimento rápido e eficiente para situações urgentes, com equipe
+                preparada para oferecer suporte imediato e salvar vidas quando
+                cada minuto conta.
+            </div>
+        </div>
+
+        <!-- INTERNAÇÃO -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Internação</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Ambiente seguro e monitorado, garantindo conforto, cuidados contínuos
+                e acompanhamento veterinário durante o período de recuperação.
+            </div>
+        </div>
+
+        <!-- EXAMES LABORATORIAIS -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Exames Laboratoriais</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Exames realizados com precisão e rapidez, auxiliando no diagnóstico
+                e no acompanhamento da saúde do seu animal.
+            </div>
+        </div>
+
+        <!-- VACINAÇÃO -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Vacinação</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Protocolos de vacinação atualizados, aplicados com cuidado e atenção,
+                contribuindo para a proteção e qualidade de vida do seu pet.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades" class="section">
+    <h2 class="section-title">Especialidades</h2>
+
+    <div class="grid">
+
+        <!-- CIRURGIA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Cirurgia</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Realizamos procedimentos cirúrgicos com total segurança, utilizando
+                técnicas modernas e monitoramento constante, sempre priorizando o
+                conforto, a recuperação e o bem-estar do seu pet.
+            </div>
+        </div>
+
+        <!-- CLÍNICA GERAL -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Clínica Geral</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Atendimento completo para avaliação, diagnóstico e acompanhamento da
+                saúde do seu animal, com escuta atenta e cuidado individualizado em
+                todas as fases da vida.
+            </div>
+        </div>
+
+        <!-- DIAGNÓSTICO POR IMAGEM -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Diagnóstico por Imagem</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Exames de imagem que auxiliam no diagnóstico preciso, realizados de
+                forma cuidadosa para reduzir o estresse do animal e garantir resultados
+                confiáveis.
+            </div>
+        </div>
+
+        <!-- ANESTESIOLOGIA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Anestesiologia</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Protocolos anestésicos personalizados, com acompanhamento contínuo,
+                assegurando tranquilidade, segurança e conforto durante todo o
+                procedimento.
+            </div>
+        </div>
+
+        <!-- MEDICINA PREVENTIVA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Medicina Preventiva</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Ações preventivas como vacinação, check-ups e orientações, focadas em
+                manter seu pet saudável e evitar problemas futuros.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="section">
+    <h2 class="section-title">Depoimentos</h2>
+    <div class="grid">
+        <div class="expand-card"><div class="expand-header"><h4>“Atendimento excelente!”</h4></div></div>
+    </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="section">
+    <h2 class="section-title">Equipe</h2>
+
+    <div class="grid">
+
+        <!-- DR. CRISTIANO LIRA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Dr. Cristiano Lira</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Médico-veterinário fundador da ACVET+, atua com foco em cirurgias e
+                cuidados clínicos, prezando pelo atendimento humanizado e seguro.
+            </div>
+        </div>
+
+        <!-- DR. THOMÁS SOUZA -->
+        <div class="expand-card">
+            <div class="expand-header" onclick="toggleCard(this)">
+                <h4>Dr. Thomás Souza</h4>
+                <div class="chevron">⌄</div>
+            </div>
+            <div class="expand-content">
+                Médico-veterinário fundador da ACVET+, com atuação voltada à clínica geral
+                e ao bem-estar animal, unindo conhecimento técnico e empatia.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="section">
+    <h2 class="section-title">Contato</h2>
+    <div class="grid">
+        <div class="expand-card"><div class="expand-header"><h4>(81) 99392-0805</h4></div></div>
+    </div>
+</section>
+
+<!-- WHATSAPP -->
+<div class="whatsapp-card">
+    <a class="whatsapp-btn"
+       href="https://wa.me/5581993920805?text=Olá,%20gostaria%20de%20informações%20sobre%20os%20serviços%20do%20Hospital%20Veterinário."
+       target="_blank">WhatsApp</a>
+</div>
+
+<!-- RODAPÉ -->
+<footer>
+    <div class="footer-container">
+        <div>
+            <h4>Hospital Veterinário ACVET</h4>
+            <p>Cuidado e excelência em saúde animal.</p>
+        </div>
+        <div>
+            <h4>Contato</h4>
+            <p>(81) 99392-0805</p>
+        </div>
+        <div>
+            <h4>Endereço</h4>
+            <p>São Lourenço da Mata – PE</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function goTo(btn, id) {
+    const section = document.getElementById(id);
+    const offset = 180;
+
+    window.scrollTo({
+        top: section.offsetTop - offset,
+        behavior: 'smooth'
+    });
+
+    document.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function toggleCard(el) {
+    el.parentElement.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
